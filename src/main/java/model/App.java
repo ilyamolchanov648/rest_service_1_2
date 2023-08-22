@@ -1,4 +1,4 @@
-package org.example;
+package model;
 
 /**
  * Hello world!
@@ -10,4 +10,13 @@ public class App
     {
         System.out.println( "Hello World!" );
     }
+
+
+
+
+
+
+
+
+
 }
