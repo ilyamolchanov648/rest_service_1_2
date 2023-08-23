@@ -1,4 +1,3 @@
-/*
 package dao;
 
 import model.Student;
@@ -19,27 +18,70 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public void addStudent(Student student) {
-        // Реализация добавления студента в базу данных
+        String sql = "INSERT INTO students (id, name) VALUES (?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, student.getId());
+            statement.setString(2, student.getName());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Student getStudentById(int id) {
-        // Реализация получения студента по идентификатору из базы данных
+        String sql = "SELECT * FROM students WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String name = resultSet.getString("name");
+                    return new Student(id, name);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public List<Student> getAllStudents() {
-        // Реализация получения всех студентов из базы данных
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT * FROM students";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                students.add(new Student(id, name));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
     }
 
     @Override
     public void updateStudent(Student student) {
-        // Реализация обновления данных студента в базе данных
+        String sql = "UPDATE students SET name = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, student.getName());
+            statement.setInt(2, student.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteStudent(int id) {
-        // Реализация удаления студента из базы данных
+        String sql = "DELETE FROM students WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
-*/
