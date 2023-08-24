@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
+import com.google.gson.Gson;
+
+
 public class AuthorServlet extends HttpServlet {
     private AuthorDAO authorDAO;
 
@@ -29,9 +32,9 @@ public class AuthorServlet extends HttpServlet {
         List<Author> authors = authorDAO.getAllAuthors();
         // Отправить список авторов в формате JSON
         // Пример отправки JSON:
-        // response.setContentType("application/json");
-        // response.setCharacterEncoding("UTF-8");
-        // response.getWriter().write(new Gson().toJson(authors));
+         response.setContentType("application/json");
+         response.setCharacterEncoding("UTF-8");
+         response.getWriter().write(new Gson().toJson(authors));
     }
 
     @Override
@@ -41,9 +44,9 @@ public class AuthorServlet extends HttpServlet {
         authorDAO.addAuthor(author);
         // Отправить успешный ответ или ошибку в формате JSON
         // Пример отправки успешного JSON-ответа:
-        // response.setContentType("application/json");
-        // response.setCharacterEncoding("UTF-8");
-        // response.getWriter().write("{\"message\": \"Автор успешно добавлен\"}");
+         response.setContentType("application/json");
+         response.setCharacterEncoding("UTF-8");
+         response.getWriter().write("{\"message\": \"Автор успешно добавлен\"}");
     }
 
     @Override
@@ -54,9 +57,9 @@ public class AuthorServlet extends HttpServlet {
         authorDAO.updateAuthor(author);
         // Отправить успешный ответ или ошибку в формате JSON
         // Пример отправки успешного JSON-ответа:
-        // response.setContentType("application/json");
-        // response.setCharacterEncoding("UTF-8");
-        // response.getWriter().write("{\"message\": \"Данные автора успешно обновлены\"}");
+         response.setContentType("application/json");
+         response.setCharacterEncoding("UTF-8");
+         response.getWriter().write("{\"message\": \"Данные автора успешно обновлены\"}");
     }
 
     @Override
@@ -65,9 +68,9 @@ public class AuthorServlet extends HttpServlet {
         authorDAO.deleteAuthor(authorId);
         // Отправить успешный ответ или ошибку в формате JSON
         // Пример отправки успешного JSON-ответа:
-        // response.setContentType("application/json");
-        // response.setCharacterEncoding("UTF-8");
-        // response.getWriter().write("{\"message\": \"Автор успешно удален\"}");
+         response.setContentType("application/json");
+         response.setCharacterEncoding("UTF-8");
+         response.getWriter().write("{\"message\": \"Автор успешно удален\"}");
     }
 }
 

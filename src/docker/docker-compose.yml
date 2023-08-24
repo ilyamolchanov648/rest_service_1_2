@@ -1,0 +1,14 @@
+version: '3'
+services:
+  your-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - h2-db
+  h2-db:
+    image: "h2database/h2:latest"
+    ports:
+      - "1521:1521"
