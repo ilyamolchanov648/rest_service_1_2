@@ -15,7 +15,7 @@
 нельзя использовать spring, hibernate, lombok
 должна быть реализована связь many to many, one to many
 должны быть unit тесты покрытие 80%
-бд  Postgres
+бд  MySQL
 
 
 
